@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="payment.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="title">Welcome to Secure Checkout</h1>
+    <p class="thanks">Thanks for choosing us for your shopping needs!</p>
+    <p class="proceed">Kindly proceed with the payment process securely.</p>
+
+    <label for="cardType">Card Type:</label>
+    <select id="cardType" name="cardType" required>
+        <option value="credit">Credit Card</option>
+        <option value="debit">Debit Card</option>
+    </select><br><br>
+
+    <form id="paymentForm">
+        <label class="cardNumber" for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" required><br><br>
+
+        <label class="cardHolder" for="cardHolderName">Card Holder Name:</label>
+        <input type="text" id="cardHolderName" name="cardHolderName" required><br><br>
+
+        <button type="submit">Pay Now</button>
+    </form>
+
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting in the traditional way
+            window.location.href = 'confirmation.html'; // Redirect to the confirmation page
+        });
+    </script>
+</body>
+</html>

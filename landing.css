@@ -1,0 +1,391 @@
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2e0555;
+}
+
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    background-color: #22043d;
+}
+
+h1 {
+    color: #333;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+div > div {
+    margin-bottom: 20px;
+}
+
+div > div > img {
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 8px 16px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul > li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(125, 42, 198, 0.7); /* Warna dengan transparansi */
+    color: #fff;
+    position: fixed;
+    z-index: 100;
+    width: 40%;
+    border-radius: 30px;
+}
+
+
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.navbar a:hover {
+    color: #ffffff; /* Warna berubah ketika dihover */
+}
+
+.logo{
+    font-size: 50px;
+    padding-top: 15px;
+}
+
+
+.dropdown {
+    background-color: rgb(0, 0, 0);
+    border-radius: 19px;
+    padding: 10px; /* Tambahkan padding untuk spasi dalam elemen */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Tambahkan transisi */
+    margin: 10px 10px 20px 10px;
+}
+
+.dropdown a {
+    color: #fff; /* Warna teks awal */
+    text-decoration: none; /* Menghilangkan garis bawah pada link */
+    transition: color 0.3s ease-in-out; /* Transisi untuk warna teks */
+}
+
+.dropdown:hover {
+    background-color: #fff; /* Warna latar belakang saat dihover */
+}
+
+.dropdown:hover a {
+    color: #000; /* Warna teks saat dihover */
+}
+
+.catalog{
+    background-color: gray;
+    border-radius: 2px;
+}
+
+#cart{
+    background-color: gray;
+}
+
+.product {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    align-items: center; /* Menyamakan tinggi setiap produk */
+}
+
+.wrap{
+    margin-top: 150px;
+}
+
+.text{
+    text-align: center;
+}
+
+.product-image {
+    margin-right: 20px;
+    margin-top: 50px;
+}
+
+.product-image img {
+    max-width: 200px;
+    max-height: 150px;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.product-details h2 {
+    margin-top: 0;
+}
+
+.product-details p {
+    margin-bottom: 5px;
+}
+
+.product-details a {
+    margin-top: 10px;
+}
+
+.notification {
+    background-color: rgb(95, 95, 95);
+    color: white;
+    padding: 5px 9px 5px 9px;
+    border-radius: 10px;
+}
+
+.navbar a {
+    transition: color 0.3s ease-in-out; /* Menambahkan transisi untuk transformasi */
+}
+
+.product-image img {
+    transition: transform 0.3s ease-in-out; /* Transisi perubahan transformasi */
+}
+
+.product-image img:hover {
+    transform: scale(1.1); /* Gambar membesar ketika dihover */
+    cursor: zoom-in; /* Kursor berubah */
+}
+
+.notification {
+    animation: pulse 1s infinite; /* Animasi pulse */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.product {
+    transition: transform 0.3s ease-in-out; /* Transisi perubahan transformasi */
+}
+
+.product:hover {
+    transform: translateY(-5px); /* Produk naik sedikit ketika dihover */
+}
+
+#about {
+    animation: fadeInOut 0.5s forwards; /* Animasi muncul/hilang */
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.product {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transisi perubahan transformasi dan bayangan */
+    box-shadow: 0px 4px 20px rgba(194, 4, 187, 0.4); /* Bayangan awal */
+    background-color: #590aa3;
+}
+
+.product:hover {
+    transform: translateY(-5px); /* Produk naik sedikit ketika dihover */
+    box-shadow: 0px 4px 20px rgba(194, 4, 187, 0.4); /* Bayangan saat dihover */
+}
+
+       
+button.add-to-cart {
+    transition: transform 0.3s ease-in-out;
+}
+
+button.add-to-cart:hover {
+    transform: scale(1.1);
+}
+
+
+.product-image img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-image img:hover {
+    transform: scale(1.1);
+    cursor: zoom-in;
+}
+
+
+#about {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+    animation: fadeIn 1s ease;
+}
+
+#about-content {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#close-about {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+#close-about:hover {
+    transform: scale(1.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#cart a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#cart a:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+@keyframes colorChange {
+    0% { color: #ff6347; } /* Warna awal */
+    25% { color: #ff69b4; } /* Warna 25% animasi */
+    50% { color: #ff8c00; } /* Warna 50% animasi */
+    75% { color: #8a2be2; } /* Warna 75% animasi */
+    100% { color: #00ced1; } /* Warna akhir */
+}
+
+.text {
+    animation: colorChange 5s infinite; /* Animasi berlangsung selama 5 detik dan berulang terus-menerus */
+}
+
+.product:hover {
+    background-color: rgba(75, 10, 113, 0.5); /* Warna gelap saat dihover */
+}
+
+.product:hover .product-details {
+    background-color: transparent; /* Hapus latar belakang di dalam .product-details saat dihover */
+}
+
+.product:hover .product-details h2,
+.product:hover .product-details p {
+    color: #fff;
+}
+
+.cart-dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+    animation: fadeIn 1s ease;
+}
+
+.cart-content {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#close-cart {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #ffffff; /* Warna merah terang */
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    font-size: 30px; /* Ukuran font diperbesar */
+    padding:   2px 16px; /* Tambahkan padding */
+    background-color: #333; /* Warna latar belakang */
+    border-radius: 50%; /* Membuat tombol berbentuk lingkaran */
+}
+
+#close-cart:hover {
+    transform: scale(1);
+    color: #c6c6c6; /* Warna saat dihover */
+    background-color: #555; /* Warna latar belakang saat dihover */
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="landing.css">
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="navbar">
+            <div class="logo">
+                <a href="#" @click="showAbout">MessiTech</a>
+            </div>
+            <div class="dropdown">
+                <a href="#">Catalog</a>
+            </div>
+            <div class="dropdown" @click="showCart">
+                <a href="#cart">
+                    Cart</a>
+                    <a id="notification" class="notification">{{ cart.length }}</a> 
+            </div>            
+        </div>
+
+        <div v-if="laptops.length === 0">
+            <p>No laptops available</p>
+        </div>
+        <div v-else class="wrap">
+            <h1 class="text">Welcome to our Laptop Store!</h1>
+            <div v-for="(laptop, index) in laptops" :key="index" class="product"> 
+                <div class="product-image">
+                    <img :src="laptop.image" :alt="laptop.name" style="max-width: 200px; max-height: 150px;" width="500px">
+                </div>
+
+                <div class="product-details">
+                    <h2>{{ laptop.name }}</h2>
+                    <p v-text>Price: Rp {{ formatPrice(laptop.price) }}</p> 
+                    <p v-text>Processor: {{ laptop.processor }}</p>
+                    <p v-text>VGA: {{ laptop.vga }}</p>
+                    <p v-text>Screen: {{ laptop.screen }}</p>
+                    <button><a :href="laptop.link" target="_blank">More Info</a></button>
+                    <button @click="addToCart(laptop)" class="add-to-cart">Add to Cart</button> 
+                </div>
+            </div>
+        </div>
+
+        <div id="cart-dialog" class="cart-dialog">
+            <div id="cart-content" class="cart-content">
+                <span id="close-cart" @click="hideCart">&times;</span>
+                <h2>Cart</h2>
+                <ul>
+                    <li v-for="(item, index) in cart" :key="index">
+                        {{ item.name }} - Rp {{ formatPrice(item.totalPrice) }} - Quantity: {{ item.quantity }} 
+                        <button @click="decreaseQuantity(index)">-</button>
+                        <button @click="increaseQuantity(index)">+</button>
+                        <button @click="removeFromCart(index)">Remove</button>
+                    </li>
+                </ul>
+                <a v-if="cart.length > 0" href="payment.html">Beli</a>
+            </div>
+        </div>
+        
+        <div id="about">
+            <div id="about-content">
+                <span id="close-about" @click="hideAbout">&times;</span>
+                <h2>About MessiTech</h2>
+                <p>MessiTech is a fictional company that specializes in creating innovative web solutions.</p>
+                <p>Contact us: contact@messitech.com</p>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                laptops: [
+                    { name: 'Rog Strix Scar 15',
+                     price: 15000000000,
+                     processor: '12th Gen Intel® Core™ i9-12900H Processor',
+                     vga: 'NVIDIA® GeForce RTX™ 3080 Ti Laptop GPU',
+                     screen: '15,6-inch', 
+                     image: 'Assets/strix.png', 
+                     link: 'https://rog.asus.com/id/laptops/rog-strix/rog-strix-scar-15-2022-series/spec/' },
+
+                    { name: 'Hp Omen 15',
+                    price: 22000000000,
+                    processor: 'Intel® Core™ i7-9750H', 
+                    vga: 'NVIDIA® GeForce RTX™ 2060',
+                    screen: '15.6 inch', 
+                    image: 'Assets/omen15.png', 
+                    link: 'https://www.hp.com/id-id/gaming/omen/15-laptop-intel.html' },
+
+                    { name: 'Rog Zephyrus',
+                    price: 60000000000, 
+                    processor: 'AMD Ryzen™ 9 7945HX Processor', 
+                    vga: 'NVIDIA® GeForce RTX™ 4090 Laptop GPU',
+                    screen: '16-inch', 
+                    image: 'Assets/Zephyrus.png', 
+                    link:'https://rog.asus.com/id/laptops/rog-zephyrus/rog-zephyrus-duo-16-2023-series/' },
+
+                    { name: 'Asus Tuf Gaming A15',
+                     price: 20000000000,
+                     processor: 'AMD Ryzen™ 9 8945H Processor',
+                     vga: 'NVIDIA® GeForce RTX™ 4070 Laptop GPU', 
+                     screen: '15.6-inch, FHD (1920 x 1080)', 
+                     image: 'Assets/Tuf.png', 
+                     link: 'https://www.asus.com/id/laptops/for-gaming/tuf-gaming/asus-tuf-gaming-a15-2024/' },
+
+                     { name: 'Lenovo Legion 7i (2024)',
+                     price: 60000000000,
+                     processor: '14th Generation Intel® Core™ i9-14900HX Processor',
+                     vga: 'NVIDIA® GeForce RTX™ 4070 Laptop GPU 8GB GDDR6 (115W) 2175MHz Boost Clock',
+                     screen: '16 inches', 
+                     image: 'Assets/Legion_7i.png', 
+                     link: 'https://www.lenovo.com/us/en/p/laptops/legion-laptops/legion-7-series/legion-7i-gen-9-(16-inch-intel)/len101g0037?orgRef=https%253A%252F%252Fwww.google.com%252F' },
+
+                     { name: 'MSI Sthealth 15 A13V',
+                     price: 29000000000,
+                     processor: '13th Gen Intel® Core™ i7-13620H processor',
+                     vga: 'NVIDIA® GeForce RTX™ 4060 Laptop GPU', 
+                     screen: '15.6" UHD 4K(3840x2160), 120Hz Refresh Rate', 
+                     image: 'Assets/Stealth_15_A13V.png', 
+                     link: 'https://id.msi.com/Laptop/Stealth-15-A13VX/Overview' },
+
+                     
+                     { name: 'TITAN GT77 HX 13V',
+                     price: 98000000000,
+                     processor: 'Prosesor Intel® Core™ i9-13980HX terbaru',
+                     vga: 'NVIDIA® GeForce RTX™ 4090 Laptop GPU 16GB', 
+                     screen: '17.3" UHD (3840x2160)', 
+                     image: 'Assets/MSI_Titan_GT77_HX_13V.png', 
+                     link: 'https://id.msi.com/Laptop/Titan-GT77-HX-13VX' },
+
+                     { name: 'Sword 16 HX B14V',
+                     price: 40000000000,
+                     processor: 'Intel® Core™ i7 processor 14700HX 20 cores',
+                     vga: 'NVIDIA® GeForce RTX™ 4070 Laptop GPU',
+                     screen: '16" QHD+(2560x1600)', 
+                     image: 'Assets/msi_sword16_HX_B14V.png', 
+                     link: 'https://id.msi.com/Laptop/Sword-16-HX-B14VX' },
+                ],
+                cart: []
+            },
+            methods: {
+                addToCart(laptop) {
+                    const existingItem = this.cart.find(item => item.name === laptop.name);
+                    if (existingItem) {
+                        existingItem.quantity++;
+                        existingItem.totalPrice = existingItem.quantity * existingItem.price;
+                    } else {
+                        this.cart.push({...laptop, quantity: 1, totalPrice: laptop.price});
+                    }
+                },
+                removeFromCart(index) {
+                    this.cart.splice(index, 1);
+                },
+                increaseQuantity(index) {
+                    this.cart[index].quantity++;
+                    this.cart[index].totalPrice = this.cart[index].quantity * this.cart[index].price;
+                },
+                decreaseQuantity(index) {
+                    if (this.cart[index].quantity > 1) {
+                        this.cart[index].quantity--;
+                        this.cart[index].totalPrice = this.cart[index].quantity * this.cart[index].price;
+                    }
+                },
+                formatPrice(price) {
+                    return (price / 1000).toLocaleString('id-ID');
+                },
+                showAbout() {
+                    document.getElementById('about').style.display = 'block';
+                },
+                hideAbout() {
+                    document.getElementById('about').style.display = 'none';
+                },
+                showCart() {
+                    document.getElementById('cart-dialog').style.display = 'block';
+                },
+                hideCart() {
+                    document.getElementById('cart-dialog').style.display = 'none';
+                }
+            }
+    });
+</script>
+</body>
+</html>
